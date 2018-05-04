@@ -1,0 +1,82 @@
+
+
+.custom_menu{
+    padding: 0px;
+    margin: 0;
+
+	line-height: 50px;  
+    text-align: center;
+}
+
+
+.sidenav{
+	background-color: #212121;
+	color: white;
+	width: 220px;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom_list{
+	color: white;
+	background-color: #53565A;
+      height: 100%;
+}
+
+.logo{
+	height:10
+}
+
+.router-outlet {
+  flex-grow: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+
+.menu-button{
+	width: 250px;
+  text-align:left
+}
+
+.demo-drawer-header {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  padding: 16px;
+}
+
+.demo-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  margin-left: 60px
+}
+
+.demo-avatar-dropdown {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin: 10px
+}
+
+
+
+.move-image{
+   margin-top:12px
+}
+
+
+
+
+

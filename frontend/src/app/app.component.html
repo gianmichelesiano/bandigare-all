@@ -1,0 +1,109 @@
+<md-sidenav-container autosize>
+    <md-sidenav #sidenav mode="side" class="sidenav" opened="true">
+        <header class="demo-drawer-header">
+          <img src="../../assets/img/logoBandiGare.png" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>{{nome}}</span>
+          </div>
+        </header>
+        
+        <div class="custom_list"> 
+                <h4 class="custom_menu">Processes</h4>
+                <md-divider></md-divider>
+           <md-list >
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/" (click)="sidenav.toggle()"><md-icon md-list-icon>home</md-icon>Home</button>
+                  </md-list-item>
+                  
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/ricerca" (click)="sidenav.toggle()"><md-icon md-list-icon>directions_walk</md-icon>Ricerca</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/client" (click)="sidenav.toggle()"><md-icon md-list-icon>directions_walk</md-icon>Client onboarding</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/company" (click)="sidenav.toggle()"><md-icon md-list-icon>account_balance</md-icon> Company screening</button>
+                  </md-list-item>
+                  <md-divider></md-divider>
+           </md-list>
+            <h4 class="custom_menu">Operation</h4>
+            <md-divider></md-divider>
+           <md-list >
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/bvd" (click)="sidenav.toggle()"><md-icon md-list-icon>pageview</md-icon>BvD Search</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="false" routerLink="/smartkyc"><md-icon md-list-icon>library_books</md-icon>Smart Kyc Search</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/twitter"><md-icon md-list-icon>pageview</md-icon>Twitter Search</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/zefix"><md-icon md-list-icon>pageview</md-icon>Zefix search</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/company-house"><md-icon md-list-icon>pageview</md-icon>Company House</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/pdf" (click)="sidenav.toggle()"><md-icon md-list-icon>account_balance</md-icon> Gen PDF</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/search-list" (click)="sidenav.toggle()"><md-icon md-list-icon>pageview</md-icon> Search List </button>
+                  </md-list-item>
+<!--              <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/network-vis" (click)="sidenav.toggle()"><md-icon md-list-icon>pageview</md-icon> Network Ex </button>
+                  </md-list-item> -->
+
+                  
+<!--                   <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/maps"><md-icon md-list-icon>library_books</md-icon>Maps</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/my-map"><md-icon md-list-icon>library_books</md-icon>My Map</button>
+                  </md-list-item> -->
+<!--                   <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/todo" (click)="sidenav.toggle()"><md-icon md-list-icon>today</md-icon>todo-ex</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/database" (click)="sidenav.toggle()"><md-icon md-list-icon>dns</md-icon>Database</button>
+                  </md-list-item>
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" routerLink="/datatable" (click)="sidenav.toggle()"><md-icon md-list-icon>list</md-icon>Datatable</button>
+                  </md-list-item>
+
+                  <md-list-item>
+                        <button  class="menu-button" md-raised-button color="accent" (click)="sidenav.toggle()" routerLink="/form-page"><md-icon md-list-icon>library_books</md-icon>Form example</button>
+                  </md-list-item> -->
+
+          </md-list>
+        </div>
+    </md-sidenav>
+
+  <md-toolbar class="mat-elevation-z6" color="primary">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon class="md-24" >menu</md-icon>
+    </button>
+    <span class="move-image"><img src="../../assets/img/BandiGare.png" height="30"></span>
+
+    <button md-icon-button [md-menu-trigger-for]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+  </md-toolbar>
+  <md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item routerLink="/">Home</button>
+    <button md-menu-item routerLink="/login">Login</button>
+    <button md-menu-item routerLink="/personal-data">Api Settings</button>  
+    <button md-menu-item routerLink="/logout">Logout</button>
+  </md-menu>
+  
+  
+
+  <router-outlet class="Site-content"></router-outlet>
+
+
+</md-sidenav-container>
+
+<md-toolbar color="primary">
+  <span class="move-image"><img src="../../assets/img/BandiGare.png" height="30"></span>
+</md-toolbar>
+

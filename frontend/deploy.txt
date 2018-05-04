@@ -1,0 +1,4 @@
+firebase login
+// project deloitte-dms
+ng build --env=prod
+firebase deploy

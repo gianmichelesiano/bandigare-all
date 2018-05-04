@@ -1,0 +1,172 @@
+
+<md-card class="card-container">
+	<div class="bar-inside">
+		<h2>
+			BvD Search
+		</h2>		
+		<p>
+			<button routerLink="/search-list" routerLinkActive="active" md-raised-button color="accent" >View list search</button>
+		</p> 
+	</div>
+
+
+
+ <form role="form" (submit)="search(companyName,entityType, firstName, middleName, lastName)"><br>
+     <p>
+      	<md-radio-group [(ngModel)]="entityType" [ngModelOptions]="{standalone: true}">
+      	 
+		  <md-radio-button value="ORG">Company</md-radio-button>
+		   <md-radio-button value="PER">Person</md-radio-button>
+		  
+		</md-radio-group>
+	 </p>
+	 <table class="example-full-width" cellspacing="0" *ngIf="entityType=='ORG'">
+	 	<tr>
+			 <td>
+			    <md-form-field class="example-full-width">
+			<input mdInput placeholder="Insert company name" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}"  required>
+			    </md-form-field>
+			</td>
+		</tr>
+	 </table>
+	 <table class="example-full-width" cellspacing="0" *ngIf="entityType=='PER'">
+	 	<tr>
+		  	<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="First Name" required [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+
+			 <td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="Middle Name" [(ngModel)]="middleName" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+
+			 <td>
+			    <md-form-field class="example-full-width">
+				<input mdInput type="text" placeholder="Last Name" required [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+		</tr>
+	 </table>
+
+   	<p>
+      <button md-raised-button color="warn" type="submit" name="action">Search</button>
+      <a  *ngIf="retObj" (click) = "openJson()" md-raised-button color="accent">Open API response</a>
+       </p> 
+ </form>
+  
+
+
+<span  *ngIf="error">{{ error }}</span>
+
+ <div *ngIf="openJsonVar">
+ 	  <p>{{ retObj | json }}</p>
+ </div>
+
+<div [ngBusy]="busy" *ngIf="entityType=='ORG'">
+
+ <tr *ngFor="let item of bvdCompanyNameSearch" > 
+	<md-expansion-panel >
+	  <md-expansion-panel-header  >
+	    <md-panel-title>
+	     <p>{{item.NAME}} -  {{item.COUNTRY}}</p>
+	    </md-panel-title>
+	  </md-expansion-panel-header>
+
+
+	  
+	  <p class="split-para">Address: <span>{{item.ADDR}}.</span></p>
+	  <p class="split-para">City: <span>{{item.CITY}}.</span></p>
+	  <p class="split-para">BvdId: <span>{{item.BVDID}}.</span></p>
+
+
+<form (submit)="searchByBvdId(item.BVDID, selectedValue)">
+	<p>
+		<md-select multiple="true" placeholder="Select sections" [(ngModel)]="selectedValue" name="section">
+		    <md-option class="select-section" *ngFor="let section of sections" [value]="section.value">
+		      {{ section.viewValue }}
+		    </md-option>
+		</md-select>
+	</p>
+	<p> Selected value: {{selectedValue}} </p>
+	  <p> 
+	  	<button md-raised-button color="accent" type="submit" name="action">Search Details</button>
+	  </p>
+</form>
+ <button (click) = "getShareholders(item.BVDID)" md-raised-button color="accent">View All Shareholders</button>
+ <button (click) = "getShareholdersSingle(item.BVDID)" md-raised-button color="accent">View Shareholders</button>
+ <button (click) = "getNetwork(item.BVDID)" md-raised-button color="accent">View Nertwork</button>
+ <button (click) = "getManagment(item.BVDID)" md-raised-button color="accent">View Managment</button>
+ <button (click) = "getAll(item.BVDID)" md-raised-button color="accent">View All</button>
+   {{ bvdSection | json }}
+	</md-expansion-panel>
+<br>
+</tr>
+</div>
+<div *ngIf="showGraph>0">
+
+<form (submit)="addNode(selected)"> 
+	<p>
+		<md-select multiple="true" placeholder="Select shareholder"  [(value)]="selected">
+		    <md-option class="select-section" *ngFor="let itemNode of nodeSelected" [value]="itemNode.id">
+		      {{ itemNode.label }}
+		    </md-option>
+		</md-select>
+	</p>
+
+	  <p> 
+	  	<button md-raised-button color="accent" type="submit" name="action">Add Node</button>
+	  </p>
+	  <app-network-vis  [edgeElements]="edgeElements" [nodeElements]="nodeElements"></app-network-vis>
+</form>
+
+	
+</div>
+
+<div *ngIf="showGraph==-1">No shareholders network for this company</div>
+
+
+<div [ngBusy]="busy" *ngIf="entityType=='PER'">
+	 <tr *ngFor="let item of bvdPersondata" >
+
+		<md-expansion-panel>
+		  <md-expansion-panel-header>
+		    <md-panel-title>
+		      {{ item["value"]["CONTACTS_HEADER_FirstName"] }} 
+		      {{ item["value"]["CONTACTS_HEADER_LastName"] }}
+		    </md-panel-title>
+		    <md-panel-description>
+		      Birth Date:{{ item["value"]["CONTACTS_HEADER_BirthDate"] }} 
+		      Country:{{ item["value"]["CONTACTS_HEADER_HomeCountry"] }}
+              Age: {{ item["value"]["CONTACTS_HEADER_Age"] }}
+              Gender:{{ item["value"]["CONTACTS_HEADER_Gender"] }}
+		    </md-panel-description>
+		  </md-expansion-panel-header>
+		  <p>Companies</p>
+		  <div *ngFor="let itemIn of item['value']['CONTACTS_MEMBERSHIP_IdCompany']; let idx = index">
+		  	{{ idx}})
+		  	
+	 	 	{{ item['value']['CONTACTS_MEMBERSHIP_NameCompany'][idx] }} -
+	 	 	{{ item['value']['CONTACTS_MEMBERSHIP_FullAddressCompany'][idx] }} -
+	 	 	{{ item['value']['CONTACTS_MEMBERSHIP_IdCompany'][idx] }} 
+	 	 	<hr>
+
+		  </div>
+        <a  (click) = "geoInfo(item['value'])" md-raised-button color="accent">View geoInfo</a>
+		</md-expansion-panel>
+		<br>
+	 </tr>
+
+</div>
+</md-card>
+
+<app-my-map [markers]="markers" ></app-my-map>
+
+
+
+
+
+
+

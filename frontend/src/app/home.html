@@ -1,0 +1,43 @@
+	  <div id="container">
+
+	  	 <md-card id="myChart">
+	  	  	<span class="count_top">Total BVD</span>
+	  	  	<div class="count">{{numBVD}}</div>
+	  	  	<span class="count_bottomminus">-10% last week</span>
+	  	  </md-card>
+
+	  	  <md-card id="myChart">
+	  	  	<span class="count_top">Total SmartKyc</span>
+	  	  	<div class="count">{{ numSmartKYC }}</div>
+	  	  	<span class="count_bottomplus">+4% last week</span>
+	  	  </md-card>
+
+	  	  <md-card id="myChart">
+	  	  	<span class="count_top">Total Zefix</span>
+	  	  	<div class="count">{{numZefix}}</div>
+	  	  	<span class="count_bottomminus">-5% last week</span>
+	  	  </md-card>
+
+	  	  <md-card id="myChart">
+	  	  	<span class="count_top">Total Twitter</span>
+	  	  	<div class="count">{{numTwitter}}</div>
+	  	  	<span class="count_bottomplus">+11% last week</span>
+	  	  </md-card>
+		</div>
+
+
+	  <div id="containerBox">
+	  	 <md-card id="myDoughnut">
+	  	 		<app-doughnut-chart-gs></app-doughnut-chart-gs>
+	  	  </md-card>
+
+	  	  <md-card id="myDoughnut">
+				<app-radar-chart></app-radar-chart>
+	  	  </md-card>
+		</div>
+
+      <div id="containerBar">
+      	<md-card id="myBar">
+			<app-bar-chart></app-bar-chart>
+	    </md-card> 
+      </div>

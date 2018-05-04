@@ -1,0 +1,62 @@
+
+#container {
+  height: 200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+}
+
+#containerBar {
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+
+}
+
+#containerBox {
+  height: 400px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+}
+
+#myBar{
+  height: 300px;
+
+}
+
+#myChart {
+  height: 120px;
+  flex-basis: 120px;
+}
+
+.count_top{
+	font-size: 15px
+}
+
+.count{
+	font-size: 30px;
+	text-align: center;
+	padding: 20px
+}
+
+.count_bottomplus{
+	font-size: 15px;
+	color : #388e3c;
+}
+
+.count_bottomminus{
+	font-size: 15px;
+	color : #FF9800;
+}
+
+
+
+#myDoughnut{
+  height: 300px;
+  flex-basis: 300px;
+}

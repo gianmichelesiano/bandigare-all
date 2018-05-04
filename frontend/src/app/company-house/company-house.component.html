@@ -1,0 +1,59 @@
+<div class="card-company-house-search ">
+
+
+
+<md-card>
+<h3>
+	Company house search
+</h3>
+  <form role="form" (submit)="findCompanyHouse(model)"><br>
+  	<md-card-content>
+		<table class="example-full-width" cellspacing="0">
+		  <tr>
+		  	<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="Company Name" required [(ngModel)]="model.company_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+		  </tr>
+		</table>
+	</md-card-content>
+    <p>
+      <button md-raised-button color="warn" type="submit" name="action">Search</button>
+    </p>
+ </form >
+</md-card>
+
+<div [ngBusy]="busy">
+<div *ngIf="result == 'success'">
+	<md-card class="card-twitter">
+		<span>{{message}}</span>
+	</md-card>
+
+	<md-card class="card-twitter" *ngFor="let item of retObj">
+	<div>
+	  <div>Company Name:{{item.title}}</div>
+      <div>Address:{{item.address_snippet}}</div>
+      <div>Description:{{item.description}}</div>
+      <div>Status:{{item.company_status}}</div>
+      <div>Date of creation:{{item.date_of_creation}}</div>
+      <div>Compan type:{{item.company_type}}</div>
+	</div>
+	<div>
+	  <div *ngIf="item.company_number"><button md-raised-button color="accent" (click)="detailsClick(item.company_number)">Details</button></div>
+	</div>
+	</md-card>
+</div>
+
+<div *ngIf="result == 'error'">
+	<md-card class="card-twitter">
+	<div>
+	  <div class="sposta">{{ retObj }}</div>
+
+	</div>
+	</md-card>
+</div>
+
+</div>
+
+</div>

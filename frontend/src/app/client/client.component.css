@@ -1,0 +1,8 @@
+.example-full-width {
+  width: 100%;
+}
+
+.Site-client-content {
+  flex: 1;
+  min-height: 100vh;
+}

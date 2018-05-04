@@ -1,0 +1,41 @@
+
+.bar-inside {
+  justify-content: space-between;
+  display: flex;
+}
+
+.title-inside{
+	font-size: 40px
+}
+
+md-card-layout {
+  max-width: 80%;
+  margin: 2em auto;
+}
+
+.split-para      { display:block;margin:10px;}
+.split-para span { display:block;float:right;width:50%;margin-left:10px;}
+
+.testo-panel {
+float: left;
+}
+
+.custom-panel{
+	float: right;
+}
+
+
+.mat-expansion-demo-width {
+  width: 600px;
+  display: block;
+}
+
+.select-section {
+  width: 600px;
+  display: block;
+}
+
+.example-full-width {
+  width: 100%;
+}
+

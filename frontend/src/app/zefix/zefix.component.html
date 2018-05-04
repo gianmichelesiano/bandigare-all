@@ -1,0 +1,48 @@
+<div class="card-zefix-search">
+
+
+
+<md-card>
+<h3>
+	Zefix search
+</h3>
+  <form role="form" (submit)="findZefix(model)"><br>
+  	<md-card-content>
+		<table class="example-full-width" cellspacing="0">
+		  <tr>
+		  	<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="Company Name" required [(ngModel)]="model.company_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+		  </tr>
+		</table>
+	</md-card-content>
+    <p>
+      <button md-raised-button color="warn" type="submit" name="action">Search</button>
+    </p>
+ </form >
+</md-card>
+
+<div [ngBusy]="busy">
+<div *ngIf="result == 'success'">
+	<md-card class="card-twitter" *ngFor="let item of retObj">
+	<div>
+	  <div class="sposta">{{item.name}} - {{item.legalSeat}} ({{item.status}})</div>
+	  <div *ngIf="item.chid"><button md-raised-button color="accent" (click)="detailsClick(item.chid)">Details</button></div>
+	</div>
+	</md-card>
+</div>
+
+<div *ngIf="result == 'error'">
+	<md-card class="card-twitter">
+	<div>
+	  <div class="sposta">{{ retObj }}</div>
+
+	</div>
+	</md-card>
+</div>
+
+</div>
+
+</div>

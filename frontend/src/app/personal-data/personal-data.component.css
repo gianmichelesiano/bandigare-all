@@ -1,0 +1,12 @@
+.Site-client-content {
+  flex: 1;
+  min-height: 100vh;
+}
+
+.card-login-dp {
+  width: 35%;
+}
+
+.example-full-width {
+  width: 100%;
+}

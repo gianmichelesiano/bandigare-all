@@ -1,0 +1,16 @@
+
+<md-card class="card-container">
+	<h1>
+		Example pdf
+	</h1>
+ <form  (submit)="download(companyName)">
+      <md-input-container class="example-full-width">
+			<input mdInput placeholder="Insert company name" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}"  required>
+      </md-input-container>
+      <button md-raised-button color="accent" type="submit" name="action">Create PDF</button><br><br>   
+ </form >
+
+<a *ngIf="urlPdfDownload != ''" target="_blank" href="{{urlPdfDownload}}">Download</a>.
+
+</md-card>
+

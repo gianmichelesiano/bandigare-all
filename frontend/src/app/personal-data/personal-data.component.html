@@ -1,0 +1,21 @@
+<div class="Site-client-content">
+	<md-card class="card-login-dp">
+	<form #formData='ngForm' (ngSubmit)="onSubmit(email,passwordApi)">
+
+	  <p class="text_login">
+	    <b>Api Settings</b>
+	  </p> 
+	 <span class="error" *ngIf="error">{{ error }}</span>
+	  
+	  User: {{email}}
+	  <br><br>
+	  <md-form-field class="example-full-width">
+	     <input mdInput type="password" required placeholder="password Api" [(ngModel)]="passwordApi" id="passwordApi" name="passwordApi" >
+	  </md-form-field>
+	  <br><br>
+	     <p class="button-align">
+	      <button md-raised-button color="warn" type="submit" name="action">Enter</button><br><br>
+	      </p>
+	    </form >
+	</md-card>
+</div>

@@ -1,0 +1,110 @@
+
+
+<md-card>
+
+ <form #myForm="ngForm" role="form" (submit)="cerca(model)"><br>
+     <p>
+      	<md-radio-group [(ngModel)]="model.entityType" [ngModelOptions]="{standalone: true}">
+      	  <md-radio-button value="PER">Person</md-radio-button>
+		  <md-radio-button value="ORG">Company</md-radio-button>
+		  
+		</md-radio-group>
+     </p>  
+
+    <!-- PERSON -->
+		<table class="example-full-width" cellspacing="0" *ngIf="model.entityType=='PER'">
+		  <tr>
+		  	<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="First Name" required [(ngModel)]="model.first_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+
+			 <td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="Middle Name" [(ngModel)]="model.middle_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+
+			 <td>
+			    <md-form-field class="example-full-width">
+				<input mdInput type="text" placeholder="Last Name" required [(ngModel)]="model.last_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+		  </tr>
+		</table>
+
+    <!-- COMPANY -->
+		<table class="example-full-width" cellspacing="0" *ngIf="model.entityType=='ORG'">
+
+    <tr>
+			<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="Company Name" required [(ngModel)]="model.organization_name" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+			</td>
+    </tr>
+
+     <tr>
+        <td>
+            <md-select placeholder="Select country" [(ngModel)]="model.organization_country" [ngModelOptions]="{standalone: true}">
+                <md-option class="select-section" *ngFor="let country of countries" [value]="country.value">
+                  {{ country.viewValue }}
+                </md-option>
+            </md-select>
+        </td>
+			 </tr>
+    <br>
+		</table>
+
+    <p>
+      <button md-raised-button color="warn" type="submit" name="action" [disabled]="!myForm.valid">Search</button>
+    </p> 
+ </form >
+
+</md-card>
+
+<md-card *ngIf="error">
+  <span  >{{ error }}</span>
+</md-card>
+
+ <div class="table-responsive-vertical shadow-z-1 sposta">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Search</th>
+          <th>Overview</th>
+          <th>Status</th>
+          <th>Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of smartKyCItems | async">
+          <td> {{ item.reviewDetails.startTimestamp | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ item.targetEntity.display }}</td>
+            <td>
+              <a md-raised-button color="accent" href="http://vm1.smartkyc.com/smartkyc/cs/review.html#/reviews/{{ item.targetEntity.entityID  }}/search/overview"  target="_blank">Open</a>
+            </td> 
+            <td *ngIf='item.risks.result.risk=="unknown"'>
+              <a md-raised-button color="warn" href="http://vm1.smartkyc.com/smartkyc/cs/review.html#/reviews/{{ item.targetEntity.entityID  }}/search/overview"  target="_blank">In progress</a>
+            </td>
+            <td *ngIf='item.risks.result.risk!="unknown"' >
+              <a md-raised-button color="accent" href="http://vm1.smartkyc.com/smartkyc/cs/review.html#/reviews/{{ item.targetEntity.entityID  }}/searchStatus?reviewID={{ item.targetEntity.entityID  }}"  target="_blank">Completed</a>
+            </td>
+
+
+            <td *ngIf='item.risks.result.risk=="unknown"'>
+                <p>Not available</p>
+            </td>
+            <td *ngIf='item.risks.result.risk!="unknown"'>
+              <a md-raised-button color="accent" href="http://vm1.smartkyc.com/smartkyc/api/1.4/reviews/{{ item.targetEntity.entityID  }}/reportDetails"  target="_blank">View</a>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+

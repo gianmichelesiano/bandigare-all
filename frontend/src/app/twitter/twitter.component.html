@@ -1,0 +1,83 @@
+
+<div class="card-twitter-search">
+<md-card>
+  <md-card-header>
+    <md-card-title class="custom-card-title">Twitter search</md-card-title>
+  </md-card-header>
+
+
+
+  <form [formGroup]="twitterForm" (submit)="findTwitter()"><br>
+  	<md-card-content>
+     <table class="example-full-width">
+      <tr>
+        <td>
+          <md-input-container  class="example-full-width">
+            <input type="text" mdInput formControlName="firstName" placeholder="First Name" required>
+            <div *ngIf="twitterForm.controls['firstName'].errors && !twitterForm.controls['firstName'].pristine">
+              <div [hidden]="!twitterForm.controls['firstName'].errors.required">First Name  is required.</div>
+            </div>
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="example-full-width">
+            <input type="text" mdInput formControlName="lastName" placeholder="Last Name" required>
+            <div *ngIf="twitterForm.controls['lastName'].errors && !twitterForm.controls['lastName'].pristine">
+              <div [hidden]="!twitterForm.controls['lastName'].errors.required">Last Name  is required.</div>
+            </div>
+          </md-input-container>
+      </tr>
+    </table>
+	</md-card-content>
+
+    <md-card-actions align="start">
+      <button md-raised-button color="warn" type="submit" name="action" [disabled]="twitterForm.invalid">Search Twitter</button>
+        <a *ngIf="urlTwitter != ''" target="_blank" [href]="urlTwitter" md-raised-button color="accent">Open Json</a>
+    </md-card-actions>
+ </form >
+
+ <p>{{textSeatch}}</p>
+
+</md-card>
+
+
+<md-card *ngIf="error">
+<span  >{{ error }}</span>
+</md-card>
+
+
+
+<div [ngBusy]="busy">
+
+
+<md-card *ngIf="retObj.lenght == 0">
+<span  >No result</span>
+</md-card>
+
+
+<md-card class="card-twitter" *ngFor="let item of retObj">
+  <md-card-header>
+    <img md-card-avatar [src]="item.profile_image_url">
+
+    <md-card-title>{{item.name}}</md-card-title>
+    <md-card-subtitle> Created: {{item.created_at}}</md-card-subtitle>
+  </md-card-header>
+
+   <md-card-content>
+   <p> {{item.status.text}} </p>
+
+  </md-card-content>
+  <md-card-actions>
+    <button md-button color="accent">Save</button>
+  </md-card-actions>
+
+</md-card>
+
+</div>
+
+</div>
+
+
+
+
+

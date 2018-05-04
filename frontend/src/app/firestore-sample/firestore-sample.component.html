@@ -1,0 +1,23 @@
+
+<md-card class="card-container">
+
+ <form role="form" (submit)="addTodo(model.description)"><br>
+      <md-input-container>
+        <input mdInput type="text" required [(ngModel)]="model.description" [ngModelOptions]="{standalone: true}">
+      </md-input-container><br><br>
+      <button md-raised-button color="warn" type="submit" name="action">add</button><br><br>   
+ </form >
+
+
+<ul>
+  <li *ngFor="let todo of todo$ | async"
+      [class.completed]="todo.completed">
+    {{ todo.description }}
+    <button md-raised-button color="warning" (click)="updateTodo(todo)">Update</button>
+    <button md-raised-button color="warning" (click)="modificaTodo(todo)">Modifica</button>
+    <button md-raised-button color="primary" (click)="deleteTodo(todo)">Elimina</button>
+  </li>
+
+</ul>
+
+</md-card>

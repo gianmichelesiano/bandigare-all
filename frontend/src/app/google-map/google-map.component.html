@@ -1,0 +1,33 @@
+  <form role="form" (submit)="findGeo(address)"><br>
+  	<md-card-content>
+		<table class="example-full-width" cellspacing="0">
+		  <tr>
+		  	<td>
+			    <md-form-field class="example-full-width">
+			    	<input mdInput type="text" placeholder="address" required [(ngModel)]="address" [ngModelOptions]="{standalone: true}">
+			    </md-form-field>
+		  </tr>
+		</table>
+	</md-card-content>
+    <p>
+      <button md-raised-button color="warn" type="submit" name="action">Search Geo</button>
+    </p>
+ </form >
+
+
+
+<div *ngIf="lat && lng">
+  <agm-map [latitude]="lat" [longitude]="lng">
+<!--     <agm-marker [latitude]="lat" [longitude]="lng"> -->
+	<agm-marker *ngFor="let m of markers; let i = index"
+	 	[latitude]="m.lat"
+	 	[longitude]="m.lng"
+	 	[label]="m.label"
+	>
+      <agm-info-window>
+        <h3><strong>Howdy!</strong></h3>
+        <p>You are here!</p>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+<div>

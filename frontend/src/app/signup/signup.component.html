@@ -1,0 +1,26 @@
+<md-card class="card-container">
+<form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+  <p class="image_logo">
+    <img src="../../assets/img/logo.png" height=100px   />
+  </p>  
+  <p class="text_login">
+    <b>Registrer</b>
+  </p> 
+ <span class="error" *ngIf="error">{{ error }}</span>
+<md-form-field class="example-full-width">
+    <input mdInput placeholder="email" type="email" required (ngModel)="email" id="email" name="email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+  </md-form-field> 
+  <br><br>
+  <md-form-field class="example-full-width">
+      <input mdInput placeholder="password" type="password" required (ngModel)="password" id="password" name="password" >
+  </md-form-field>
+  <br>
+  <br>
+     <p class="button-align">
+      <button md-raised-button color="warn" type="submit" name="action">Enter</button><br><br>
+      </p>
+    </form >
+</md-card>
+
+

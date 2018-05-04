@@ -1,0 +1,42 @@
+<!--   <ul>
+    <li *ngFor="let item of items | async">
+       {{ item | json }}
+    </li>
+  </ul> -->
+<!-- <div class="Site-client-content">
+  client works!
+</div> -->
+<div class="Site-client-content sposta">
+  <div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>User</th>
+          <th>Api</th>
+          <th>Method</th>
+          <th>Param</th>
+          <th>Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items | async">
+          <td> {{ item.data*10   | date:'dd-MM-yy,HH:mm' }}</td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.api }}</td>
+          <td>{{ item.method }}</td>
+          <td>{{ item.param }}</td>
+          <td>
+            <a  (click) = "callJson(item.value)" md-raised-button color="accent">Response</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="json">
+    <p>Json response</p>
+  <app-json-page  [json]="json"></app-json-page>
+  </div>
+  </div>

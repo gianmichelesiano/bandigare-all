@@ -1,0 +1,24 @@
+.example-full-width {
+  width: 100%;
+}
+
+.card-twitter {
+	width: 100%;
+} 
+
+.card-twitter-search {
+  width: 100%;
+  min-height: 600px;
+}
+
+.example-header-image {
+  background-image: url('http://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.custom-card-title {
+	 font-size: 24px;
+	 font-weight: bold;
+}
+
+
