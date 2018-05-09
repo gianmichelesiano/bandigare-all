@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 
 import { MyDataService } from '../services/mydataservice';
@@ -6,7 +6,16 @@ import { Tipologia } from '../services/tipologia';
 import { Categoria } from '../services/categoria';
 import { Regione } from '../services/regioni';
 import { Provincia } from '../services/provincia';
+import {AppSettings} from '../appSettings';
+import {MatSnackBar} from '@angular/material';
 
+
+
+interface ricercaModel {
+  organization_country: string;
+  provincia: string;
+
+}
 
 @Component({
   selector: 'app-ricerca',
@@ -15,43 +24,60 @@ import { Provincia } from '../services/provincia';
 })
 export class RicercaComponent implements OnInit {
 
-  categoria:string = '';
-  regione:string = '';
-  provincia:string = '';
 
-  selectedTipologia:Tipologia = new Tipologia(0, ''); 
+
+  selectedTipologia:Tipologia = new Tipologia(0, '');
   selectedCategoria:Categoria = new Categoria('TT', 0, '');
   selectedRegione:Regione = new Regione(0, '');
-  selectedProvincia:Provincia = new Provincia('TT', 0, '' );  
+  selectedProvincia:Provincia = new Provincia('TT', 0, '' );
 
-  numGareInfinite : number = 10;
-  visible : boolean = false;
-  
+
   tipologie: Tipologia[];
   categorie: Categoria[];
-  provincie: Provincia[];
   regioni: Regione[];
+  provincie: Provincia[];
 
-  public gare = [];
-  public gareFiltrate = [];
-  public gareRicercate = [];
-  public gareOrdinate = [];
-  public gareFiltrateCategorie = [];
+  countries = AppSettings.COUNTRY
+  organization_country = ''
+  selectedValue: string;
 
-  constructor(private _mydataService: MyDataService) { 
+  
 
-  	this.tipologie = this._mydataService.getTipologia();
-  	this.regioni = this._mydataService.getRegioni();
-    let val = localStorage.getItem('gareDB')
 
-    console.log('ricerca cap')
-    console.log(val)
+
+  constructor(private _mydataService: MyDataService, public snackBar: MatSnackBar) { 
+
+    this.tipologie = this._mydataService.getTipologia();
+    this.regioni = this._mydataService.getRegioni();
+
+
 
 
   	
   }
 
+
+  onSelectTipologia(tipologiaid) {
+    console.log(tipologiaid)
+    this.categorie = this._mydataService.getCategoria().filter((item)=> item.tipologiaid == tipologiaid);
+  }
+
+  onSelectRegione(regioneid) {
+    this.provincie = this._mydataService.getProvincia().filter((item)=> item.regioneid == regioneid);
+  }
+
   ngOnInit() {
   }
+
+ doRicerca(tipologiaId, categoriaId, regioneId, provinciaId){
+   if (tipologiaId == 0){
+         this.snackBar.open('Inserire almeno una tipologia', '', {duration: 3000,}); 
+   }
+   console.log('ricerca')
+   console.log(tipologiaId)
+   console.log(categoriaId)
+   console.log(regioneId)
+   console.log(provinciaId)
+ }
 
 }

@@ -45,7 +45,7 @@ import { LoginComponent } from './login/login.component';
 import {  ViewChild, HostListener } from '@angular/core';
 import {MdSidenav} from "@angular/material";
 import { RicercaComponent } from './ricerca/ricerca.component';
-
+import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
 
 
 @Component({
@@ -115,11 +115,8 @@ export const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'registrazione', component: RegistrazioneComponent },
   { path: 'ricerca', component: RicercaComponent },
+  { path: 'stripe', component: MakePaymentComponent },
   
-  
-
-  
-
  
 ]
 
@@ -146,16 +143,16 @@ export class AppComponent {
   constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth, public as:AuthenticationService, private router: Router) {
 
 
-    this.gare = db.object('gare');
-    this.gare.snapshotChanges().subscribe(snapshot => {
-       let val = snapshot.payload.val()
+    // this.gare = db.object('gare');
+    // this.gare.snapshotChanges().subscribe(snapshot => {
+    //    let val = snapshot.payload.val()
 
-      for (let key in val) {
-        console.log(key)
-        console.log(val[key])
-      }
-      console.log('fine')
-    });
+    //   for (let key in val) {
+    //     console.log(key)
+    //     console.log(val[key])
+    //   }
+    //   console.log('fine')
+    // });
 
    }
 }

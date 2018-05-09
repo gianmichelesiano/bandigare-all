@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  stripeKey: 'pk_test_25zrnuBcQ34jtP0XuZLWQqkk',
   firebase: {
     apiKey: 'AIzaSyAecCiVjizFOWgZM4KuSpdzDcyyEw1MBl0',
     authDomain: 'bandigare-8096d.firebaseapp.com',

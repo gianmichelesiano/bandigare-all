@@ -1,3 +1,45 @@
-<p>
-  ricerca works!
-</p>
+<md-card class="card-container">
+		 <table class="example-full-width" >
+
+		 	<tr>
+		        <td>
+		            <md-select  class="example-full-width" placeholder="Seleziona Tipologia"  [(ngModel)]="selectedTipologia.id" (change)="onSelectTipologia(selectedTipologia.id)" [ngModelOptions]="{standalone: true}">
+		                <md-option *ngFor="let tipologia of tipologie" value= {{tipologia.id}}>{{tipologia.name}}
+		                </md-option>
+		            </md-select>
+		        </td>
+			</tr>
+
+			<tr>
+		        <td>
+		            <md-select  class="example-full-width" placeholder="Seleziona Categoria"  [(ngModel)]="selectedCategoria.id"      [ngModelOptions]="{standalone: true}">
+		                <md-option *ngFor="let categoria of categorie " value= {{categoria.id}}>{{categoria.name}}
+		                </md-option>
+		            </md-select>
+		        </td>
+			</tr>
+
+			<tr>
+		        <td>
+		            <md-select  class="example-full-width" placeholder="Seleziona Regione"  [(ngModel)]="selectedRegione.id"     (change)="onSelectRegione(selectedRegione.id)"  [ngModelOptions]="{standalone: true}">
+		                <md-option  *ngFor="let regione of regioni" value= {{regione.id}}>{{regione.name}}
+		                </md-option>
+		            </md-select>
+		        </td>
+			</tr>
+
+			<tr>
+		        <td>
+		            <md-select  class="example-full-width" placeholder="Seleziona Provincia"  [(ngModel)]="selectedProvincia.id"      [ngModelOptions]="{standalone: true}">
+		                <md-option  *ngFor="let provincia of provincie" value= {{provincia.id}}>{{provincia.name}}
+		                </md-option>
+		            </md-select>
+		        </td>
+			</tr>
+
+		</table>
+		<br>
+		 <p>
+		    <button md-raised-button color="warn" (click)="doRicerca(selectedTipologia.id, selectedCategoria.id, selectedRegione.id , selectedProvincia.id)">Cerca</button>
+		 </p> 
+</md-card>

@@ -28,6 +28,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {MatDialogModule} from "@angular/material";
 import { MyDataService } from './services/mydataservice';
 
+import { HttpClientModule, HttpClient  } from '@angular/common/http';
+
 
 import { AppComponent, Home, appRoutes } from './app.component'; 
 import { ClientComponent } from './client/client.component';
@@ -75,6 +77,10 @@ import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { DialogsService } from './dialogs/dialogs.service';
 import { DialogsModule } from './dialogs/dialogs.module';
 import { RicercaComponent } from './ricerca/ricerca.component';
+import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
+import { PaymentService } from './payments/payment.service';
+
+
 
 
 
@@ -147,7 +153,11 @@ import { RicercaComponent } from './ricerca/ricerca.component';
     RegistrazioneComponent,
     
     
-    RicercaComponent
+    RicercaComponent,
+    
+    
+    MakePaymentComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -161,6 +171,7 @@ import { RicercaComponent } from './ricerca/ricerca.component';
     MdInputModule,
     MatListModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatTabsModule,
     MatTableModule,
     MatSlideToggleModule,
@@ -191,6 +202,7 @@ import { RicercaComponent } from './ricerca/ricerca.component';
     WindowService,
     DialogsService,
     AuthAPI,
+    PaymentService,
     MyDataService,
     {
       provide: RECAPTCHA_LANGUAGE,

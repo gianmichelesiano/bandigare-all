@@ -4,4 +4,6 @@ interface NodeModule {
   id: string;
 }
 
-declare var vis
+declare var vis;
+
+declare var StripeCheckout:any;
