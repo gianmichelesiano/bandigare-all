@@ -36,10 +36,7 @@ export class RegistrazioneComponent {
 
 
   constructor(public db: AngularFireDatabase, public snackBar: MatSnackBar, public af: AngularFireAuth,private router: Router, public as:AuthenticationService) {
-            this.af.authState.subscribe((auth) => {
-              this.authState = auth
-            });
-       
+
   }
 
   onSubmit(formData) {
@@ -55,7 +52,8 @@ export class RegistrazioneComponent {
                 itemsRef.set(user.uid, { nome: nome });
 
 
-                this.af.auth.signInWithEmailAndPassword(email, password).then(() => { 
+                this.af.auth.signInWithEmailAndPassword(email, password).then(() => {
+                  localStorage.setItem('userUID', email);
                   this.router.navigate(['/']); 
                 });
 

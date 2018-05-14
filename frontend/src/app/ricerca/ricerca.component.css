@@ -16,3 +16,78 @@
     padding: 15px;
 
 }
+
+
+.example-header-image {
+  
+  background-size: cover;
+  border-radius: 8px;
+  width: 80px;
+}
+
+
+.flex-container {
+  display: flex;
+  flex-direction:column
+}
+
+.titolo-card {
+    text-align: center;
+    color: #388E3C;
+}
+
+.row-image-card{
+	display: flex;
+	flex-direction:flex-start;
+}
+
+
+.image-card{
+
+    border-radius: 4px;
+    padding: 5px;
+    width: 80px;
+}
+
+.info-card{
+   padding: 5px;
+
+   display: flex;
+   flex-direction:column;
+   margin-left:10px;
+   justify-content:space-around
+}
+
+.info-luoghi{
+  display: flex;
+}
+
+.larg-tit{
+	min-width: 95px;
+  font-weight: bold;
+  
+}
+
+.oggetto-card{
+	display: flex;
+	padding: 10px;
+
+}
+
+.info-row{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+}
+
+.info-item{
+	display: flex;
+}
+
+.data-scad{
+	min-width: 120px
+}
+
+.dettaglio{
+	padding-top: 30px
+}

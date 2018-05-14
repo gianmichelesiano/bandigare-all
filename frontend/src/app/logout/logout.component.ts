@@ -15,9 +15,11 @@ export class LogoutComponent implements OnInit {
   constructor(public af: AngularFireAuth,private router: Router) {
 
   	 this.af.auth.signOut;
+     
      console.log('logged out');
+
      this.router.navigateByUrl('/login');
-     console.log(this.af.authState)
+     
   }
 
   ngOnInit() {

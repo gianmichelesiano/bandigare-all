@@ -3,7 +3,11 @@
         <header class="demo-drawer-header">
           <img src="../../assets/img/logoBandiGare.png" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>{{nome}}</span>
+
+    <div *ngIf="afAuth.authState | async as user">
+      <span>{{ user.email }}</span>
+
+    </div>
           </div>
         </header>
         

@@ -1,45 +1,156 @@
-<md-card class="card-container">
-		 <table class="example-full-width" >
+<div class="ricerca">
+	<md-card class="card-container">
+			 <table class="example-full-width" >
 
-		 	<tr>
-		        <td>
-		            <md-select  class="example-full-width" placeholder="Seleziona Tipologia"  [(ngModel)]="selectedTipologia.id" (change)="onSelectTipologia(selectedTipologia.id)" [ngModelOptions]="{standalone: true}">
-		                <md-option *ngFor="let tipologia of tipologie" value= {{tipologia.id}}>{{tipologia.name}}
-		                </md-option>
-		            </md-select>
-		        </td>
-			</tr>
+			 	<tr>
+			        <td>
+			            <md-select  required class="example-full-width" placeholder="Seleziona Tipologia"  [(ngModel)]="selectedTipologia.id" (change)="onSelectTipologia(selectedTipologia.id)" [ngModelOptions]="{standalone: true}">
+			                <md-option *ngFor="let tipologia of tipologie" value= {{tipologia.id}}>{{tipologia.name}}
+			                </md-option>
+			            </md-select>
+			        </td>
+				</tr>
 
-			<tr>
-		        <td>
-		            <md-select  class="example-full-width" placeholder="Seleziona Categoria"  [(ngModel)]="selectedCategoria.id"      [ngModelOptions]="{standalone: true}">
-		                <md-option *ngFor="let categoria of categorie " value= {{categoria.id}}>{{categoria.name}}
-		                </md-option>
-		            </md-select>
-		        </td>
-			</tr>
+				<tr>
+			        <td>
+			            <md-select  class="example-full-width" placeholder="Seleziona Categoria"  [(ngModel)]="selectedCategoria.id"      [ngModelOptions]="{standalone: true}">
+			                <md-option *ngFor="let categoria of categorie " value= {{categoria.id}}>{{categoria.name}}
+			                </md-option>
+			            </md-select>
+			        </td>
+				</tr>
 
-			<tr>
-		        <td>
-		            <md-select  class="example-full-width" placeholder="Seleziona Regione"  [(ngModel)]="selectedRegione.id"     (change)="onSelectRegione(selectedRegione.id)"  [ngModelOptions]="{standalone: true}">
-		                <md-option  *ngFor="let regione of regioni" value= {{regione.id}}>{{regione.name}}
-		                </md-option>
-		            </md-select>
-		        </td>
-			</tr>
+				<tr>
+			        <td>
+			            <md-select  class="example-full-width" placeholder="Seleziona Regione"  [(ngModel)]="selectedRegione.id"     (change)="onSelectRegione(selectedRegione.id)"  [ngModelOptions]="{standalone: true}">
+			                <md-option  *ngFor="let regione of regioni" value= {{regione.id}}>{{regione.name}}
+			                </md-option>
+			            </md-select>
+			        </td>
+				</tr>
 
-			<tr>
-		        <td>
-		            <md-select  class="example-full-width" placeholder="Seleziona Provincia"  [(ngModel)]="selectedProvincia.id"      [ngModelOptions]="{standalone: true}">
-		                <md-option  *ngFor="let provincia of provincie" value= {{provincia.id}}>{{provincia.name}}
-		                </md-option>
-		            </md-select>
-		        </td>
-			</tr>
+				<tr>
+			        <td>
+			            <md-select  class="example-full-width" placeholder="Seleziona Provincia"  [(ngModel)]="selectedProvincia.id"      [ngModelOptions]="{standalone: true}">
+			                <md-option  *ngFor="let provincia of provincie" value= {{provincia.id}}>{{provincia.name}}
+			                </md-option>
+			            </md-select>
+			        </td>
+				</tr>
 
-		</table>
-		<br>
-		 <p>
-		    <button md-raised-button color="warn" (click)="doRicerca(selectedTipologia.id, selectedCategoria.id, selectedRegione.id , selectedProvincia.id)">Cerca</button>
-		 </p> 
-</md-card>
+			</table>
+			<br>
+			 <p>
+			    <button md-raised-button color="warn" (click)="doRicerca(selectedTipologia.id, selectedCategoria.id, selectedRegione.id , selectedProvincia.id)">Cerca</button>
+			 </p> 
+	</md-card>
+</div>
+
+<div class="ricerca" *ngIf = "gare.length>0">
+	<md-card *ngFor="let gara of gare">
+		<div class="flex-container">
+		  <div class="titolo-card"><h3>{{gara.fields.ENTE}}</h3></div>
+
+		  <div class="row-image-card">
+		  	 <div>
+		  	    <img class="image-card" src="../../../assets/image/REGIONI/{{gara.fields.REGIONE}}.png">
+		  	 </div>
+		  	 <div class="info-card">
+		  	       <div class="info-luoghi">
+		  	       		<div class="larg-tit">
+		  	       			Regione:
+		  	       		</div>
+		  	       	    <div>
+		  	       			{{gara.fields.REGIONE | capit}}
+		  	       		</div>
+		  	       </div>
+
+		  	       <div class="info-luoghi">
+		  	       		<div class="larg-tit">
+		  	       			Provincia:
+		  	       		</div>
+		  	       	    <div>
+		  	       			{{gara.fields.PROVINCIA | provincie}}
+		  	        </div>
+		  	       </div>
+		  	       <div class="info-luoghi">
+		  	       		<div class="larg-tit">
+		  	       			Comune:
+		  	       		</div>
+		  	       	    <div>
+		  	       			{{gara.fields.CITTA | capit }}
+		  	           </div>
+		  	       </div>
+		  	 </div>
+		  </div>
+
+		  <div class="info-row">
+<!-- 		  	<div class="info-item">
+		  	  	<div class="larg-tit">
+		  	       	Tipologia:
+		  	    </div>
+		  	    <div>
+		            {{gara.fields.TIPOLOGIA | capit}}
+		  	    </div>
+		  	</div> -->
+
+		  	<div class="info-item" *ngIf = "gara.fields.CATEGORIA_PREVALENTE != ''">
+		  	  	<div class="larg-tit">
+		  	       	Categoria:
+		  	    </div>
+		  	    <div>
+		            {{gara.fields.CATEGORIA_PREVALENTE | capit}}
+		  	    </div>
+		  	</div>
+
+
+		    <div class="info-item" *ngIf = "gara.fields.CATEGORIA_PREVALENTE == ''">
+		  	  	<div class="larg-tit">
+		  	       	CPV:
+		  	    </div>
+		  	    <div>
+		            {{gara.fields.CPV | capit}}
+		  	    </div>
+		  	</div>
+
+		  </div>
+
+		  <div class="oggetto-card">
+		  	  	<div class="larg-tit">
+		  	       	Oggetto:
+		  	    </div>
+		  	    <div>
+                   {{gara.fields.OGGETTO | capit}}
+		  	    </div>
+
+		  </div>
+
+			  <div class="info-row">
+			  	<div class="info-item">
+			  	  	<div class="larg-tit">
+			  	       	Importo:
+			  	    </div>
+			  	    <div>
+			            {{gara.fields.IMPORTO | importo | currency:'EUR' }}
+			  	    </div>
+			  	</div>
+
+			  	<div class="info-item">
+			  	  	<div class="larg-tit">
+			  	       	Scadenza:
+			  	    </div>
+			  	    <div>
+			            {{gara.fields.DATA_SCADENZA | date:'dd/MM/yy'}}
+			  	    </div>
+			  	</div>
+
+		  </div>
+		    
+			  <div class="dettaglio">
+			  	<button md-raised-button color="warn">DETTAGLIO GARA</button>
+			  </div>
+
+		 </div>
+	</md-card>
+</div>
+

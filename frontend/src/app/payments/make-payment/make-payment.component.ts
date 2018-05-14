@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { PaymentService } from '../payment.service';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {ApiService} from '../../api.service';
 
 @Component({
   selector: 'app-make-payment',
@@ -13,7 +14,7 @@ export class MakePaymentComponent implements OnInit {
   handler: any;
   amount = 500;
 
-  constructor(private paymentSvc: PaymentService, private http: HttpClient) { }
+  constructor(private paymentSvc: PaymentService, private http: HttpClient, private apiService:ApiService) { }
 
   ngOnInit() {
     this.handler = StripeCheckout.configure({
@@ -21,14 +22,8 @@ export class MakePaymentComponent implements OnInit {
       image: '../../assets/img/logoBandiGare.png',
       locale: 'auto',
       token: token => {
-        console.log("token")
-        console.log(token.id)
-        console.log("amount")
-        console.log(this.amount)
 
-        this.http.get('http://localhost:5000/makePayment/?amount='+this.amount+'&token='+token.id).subscribe(
-            (response) => console.log(response) 
-          );
+        this.apiService.makePayment(this.amount,token.id)
 
         this.paymentSvc.processPayment(token, this.amount)
       }

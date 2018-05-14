@@ -16,9 +16,6 @@ export class LoginComponent  {
   authState: any = null;
 
   constructor(public af: AngularFireAuth,private router: Router, public as:AuthenticationService) {
-            this.af.authState.subscribe((auth) => {
-              this.authState = auth
-            });
   }
 
   onSubmit(formData) {
@@ -29,6 +26,7 @@ export class LoginComponent  {
 
       this.af.auth.signInWithEmailAndPassword(formData.value.email,formData.value.password).then(
             (success) => {
+             localStorage.setItem('userUID', formData.value.email);
              this.router.navigate(['/']);         
           }).catch(
             (err) => {

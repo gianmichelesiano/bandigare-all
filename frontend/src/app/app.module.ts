@@ -80,7 +80,13 @@ import { RicercaComponent } from './ricerca/ricerca.component';
 import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
 import { PaymentService } from './payments/payment.service';
 
+import { ApiService } from './api.service';
 
+import { ProvinciePipe } from './provincie.pipe';
+import { ImportoPipe } from './importo.pipe';
+import { CapitPipe } from './capit.pipe';
+import { ScorporabiliPipe } from './scorporabili.pipe';
+import { LOCALE_ID } from '@angular/core';
 
 
 
@@ -157,6 +163,10 @@ import { PaymentService } from './payments/payment.service';
     
     
     MakePaymentComponent,
+    ProvinciePipe,
+    ImportoPipe,
+    CapitPipe,
+    ScorporabiliPipe,
 
   ],
   imports: [
@@ -203,7 +213,9 @@ import { PaymentService } from './payments/payment.service';
     DialogsService,
     AuthAPI,
     PaymentService,
+    ApiService,
     MyDataService,
+    { provide: LOCALE_ID, useValue: "it-IT" },
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'it', 

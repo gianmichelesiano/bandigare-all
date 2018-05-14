@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -125,7 +126,7 @@ export const appRoutes: Routes = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   
   @ViewChild('sidenav') sidenav: MdSidenav;
   @HostListener('window:resize', ['$event'])
@@ -137,22 +138,18 @@ export class AppComponent {
 
 
   gare: AngularFireObject<any>;
-  public nome  = "No user"
+  //public nome  = "No user"
   title = 'app';
   username = '';
-  constructor(db: AngularFireDatabase, public afAuth: AngularFireAuth, public as:AuthenticationService, private router: Router) {
+  nome: any = null;
+  constructor( db: AngularFireDatabase, public afAuth: AngularFireAuth, public as:AuthenticationService, private router: Router) {
 
 
-    // this.gare = db.object('gare');
-    // this.gare.snapshotChanges().subscribe(snapshot => {
-    //    let val = snapshot.payload.val()
-
-    //   for (let key in val) {
-    //     console.log(key)
-    //     console.log(val[key])
-    //   }
-    //   console.log('fine')
-    // });
 
    }
+
+   ngOnInit() {
+   }
 }
+
+
