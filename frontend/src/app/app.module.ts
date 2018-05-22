@@ -27,8 +27,11 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {MatDialogModule} from "@angular/material";
 import { MyDataService } from './services/mydataservice';
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 import { HttpClientModule, HttpClient  } from '@angular/common/http';
+
 
 
 import { AppComponent, Home, appRoutes } from './app.component'; 
@@ -199,6 +202,7 @@ import { LOCALE_ID } from '@angular/core';
     AngularFireDatabaseModule,
     MatDialogModule,
     DialogsModule,
+    InfiniteScrollModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDlrPvrjndKPbJxqLhzcVtLYDXHG6fvaNQ'
@@ -224,3 +228,5 @@ import { LOCALE_ID } from '@angular/core';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

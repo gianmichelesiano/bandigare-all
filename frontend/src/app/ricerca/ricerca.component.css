@@ -91,3 +91,29 @@
 .dettaglio{
 	padding-top: 30px
 }
+
+
+.card-ricerca {
+  width: 100%;
+  min-height: 400px;
+}
+
+.ricerca{
+  min-height: 600px;
+}
+
+
+.mat-expansion-panel-header-title {
+    color: #ff5722;;
+}
+
+.md-fab-bottom-right{
+    position: fixed !important;
+}
+
+.downladLink{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:  wrap;
+
+}
